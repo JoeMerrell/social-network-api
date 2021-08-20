@@ -43,7 +43,7 @@ const ThoughtSchema = new Schema (
         createdAt: {
             type: Date,
             default: Date.now,
-            get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+            get: createdAtVal => dateFormat(createdAtVal)
         },
         username: {
             type: String,
@@ -64,7 +64,7 @@ const ThoughtSchema = new Schema (
 
 const Thought = model('Thought', ThoughtSchema);
 
-  // get total count of friends on retrieval
+  // get count of friends
   ThoughtSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
   });
