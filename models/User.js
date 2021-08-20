@@ -21,37 +21,35 @@ const UserSchema = new Schema(
       default: Date.now,
       get: createdAtVal => dateFormat(createdAtVal)
     },
-    size: {
-      type: String,
-      enum: ['Personal', 'Small', 'Medium', 'Large', 'Extra Large'],
-      default: 'Large'
-    },
-    toppings: [],
-    comments: [
+    thoughts: [
       {
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
+          type: Schema.Types.ObjectId,
+          ref: 'Thought'
       }
-    ]
+    ],
+  friends: [
+      {
+          type: Schema.Types.ObjectId,
+          ref: 'User'
+      }
+  ]
   },
-  {
-    toJSON: {
-      virtuals: true,
-      getters: true
-    },
-    // prevents virtuals from creating duplicate of _id as `id`
-    id: false
-  }
+  { 
+  toJSON: {
+    virtuals: true,
+    getters: true
+  },
+  id: false
+}
 );
 
-// get total count of comments and replies on retrieval
-PizzaSchema.virtual('commentCount').get(function() {
-  return this.comments.reduce(
-    (total, comment) => total + comment.replies.length + 1,
-    0
-  );
+
+
+// get total count of comments & replies
+UserSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
 });
 
-const Pizza = model('Pizza', PizzaSchema);
+const User = model('User', UserSchema); // what is this doing exactly?
 
-module.exports = Pizza;
+module.exports = User;
