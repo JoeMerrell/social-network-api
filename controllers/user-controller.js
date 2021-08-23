@@ -3,6 +3,7 @@ const { User } = require('../models')
 const userController = {
     
     //get all users
+
     getAllUsers(req,res) {
         User.find({})
         .populate({
@@ -18,6 +19,7 @@ const userController = {
       },
     
     //get User by id w  thoughts
+    
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
            .populate({

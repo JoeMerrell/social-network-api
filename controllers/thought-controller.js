@@ -17,8 +17,6 @@ const thoughtController = {
         });
     },
 
-
-
     //get one thought 
     getThoughtById({ params }, res) {
         Thought.findOne({ _id: params.id })
@@ -55,7 +53,7 @@ const thoughtController = {
             .catch(err => res.json(err));
     },
 
-    //add reaction
+    // add reaction
     addReaction ({ params, body}, res) {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
@@ -72,7 +70,7 @@ const thoughtController = {
         .catch(err => res.json(err));
     },
 
-    //delete reaction
+    // delete reaction
     removeReaction({ params }, res) {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
@@ -83,7 +81,7 @@ const thoughtController = {
         .catch(err => res.json(err));
     },
 
-    //update a thought (by id)
+    // update thought
     updateThought({ params, body }, res) {
         Thought.findOneAndUpdate(
             { _id: params.id }, 
@@ -99,7 +97,7 @@ const thoughtController = {
         .catch(err => res.json(err));
     },
 
-    //delete a thought (by id)
+    //delete thought
     deleteThought({ params, body}, res) {
         Thought.findOneAndDelete({ _id: params.id })
         .then(deletedThought => {
@@ -111,5 +109,11 @@ const thoughtController = {
         .catch(err => res.json(err));
     }
 };
+
+// /api/users -- add users
+// /api/users/:userId/friends/:friendId -- add friend
+// /api/thoughts -- add thought
+// /api/thoughts/:thoughtId/reactions -- add reaction
+
 
 module.exports = thoughtController

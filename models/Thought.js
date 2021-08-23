@@ -3,8 +3,7 @@ const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 
 const ReactionSchema = new Schema (
-    {
-      
+    {     
       reactionId: {
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId()
@@ -64,12 +63,11 @@ const ThoughtSchema = new Schema (
 )
 
 
-const Thought = model('Thought', ThoughtSchema);
-
   // get count of friends
   ThoughtSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
   });
 
+  const Thought = model('Thought', ThoughtSchema);
 
 module.exports = Thought;

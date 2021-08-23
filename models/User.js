@@ -50,6 +50,6 @@ UserSchema.virtual('friendCount').get(function() {
   return this.friends.length;
 });
 
-const User = model('User', UserSchema); // what is this doing exactly?
+const User = model('User', UserSchema); 
 
 module.exports = User;
