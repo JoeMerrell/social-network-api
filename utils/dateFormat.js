@@ -1,5 +1,8 @@
+// Note -- this file is not used by the app -- I kept for reference purposes only
+
 const addDateSuffix = date => {
     let dateStr = date.toString();
+
   
     // get last char of date string
     const lastChar = dateStr.charAt(dateStr.length - 1);
